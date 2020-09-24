@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="film_image">Film Image</string>
+    <string name="title">Title</string>
+    <string name="date">Month dd, YY</string>
+</resources>

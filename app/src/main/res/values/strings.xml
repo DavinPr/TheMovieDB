@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">TheMovieDB</string>
+    <string name="trending">Trending</string>
+    <string name="number_val">99</string>
+    <string name="runtime">Runtime</string>
+    <string name="genre">Genre</string>
+    <string name="overview">Overview</string>
+    <string name="popularity">Popularity</string>
+    <string name="top_billed_cast">Top Billed Cast</string>
+    <string name="name">Name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="favorite">Favorite</string>
+    <string name="title_home">Home</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="discover_foreground">Discover Foreground</string>
+    <string name="discover">Discover</string>
+    <string name="search_here">Search Here</string>
+    <string name="back">Back</string>
+    <string name="backdrop">Backdrop</string>
+    <string name="poster">Poster</string>
+    <string name="date_title">Date</string>
+    <string name="runtime_value">1 hour 2 minutes</string>
+    <string name="rating">Rating</string>
+    <string name="error_value">Oops … Something went wrong!</string>
+    <string name="cast_error_value">Error while load cast!</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="add_favorite_message">Movie add to Favorite</string>
+    <string name="remove_favorite_message">Movie remove from Favorite</string>
+    <string name="character">Character</string>
+</resources>
