@@ -45,6 +45,7 @@ class DetailActivity : AppCompatActivity() {
             }
             statusBarColor = Color.TRANSPARENT
         }
+        
 
         ViewCompat.setOnApplyWindowInsetsListener(
             findViewById(R.id.detail_container)
