@@ -8,6 +8,8 @@ import com.submission.core.data.source.remote.RemoteDataSource
 import com.submission.core.data.source.remote.network.ApiService
 import com.submission.core.domain.repository.IFilmRepository
 import com.submission.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -20,10 +22,14 @@ val dataBaseModule = module {
     factory { get<FilmDatabase>().filmDao() }
 
     single {
+        val passphrase : ByteArray = SQLiteDatabase.getBytes("themoviedb".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             FilmDatabase::class.java, "Film.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
