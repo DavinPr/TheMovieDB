@@ -15,6 +15,7 @@ import com.submission.core.utils.ComponentSetup
 import com.submission.core.utils.DataMapper
 import com.submission.themoviedb.R
 import com.submission.themoviedb.adapter.CastListAdapter
+import com.submission.themoviedb.helper.barSetup
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.detail_data_bottom_container.*
 import kotlinx.android.synthetic.main.detail_data_top_container.*
@@ -32,26 +33,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        window.apply {
-            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                setDecorFitsSystemWindows(false)
-                window.insetsController?.let {
-                    it.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-                    it.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-                }
-            } else {
-                @Suppress("DEPRECATION")
-                window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
-            }
-            statusBarColor = Color.TRANSPARENT
-        }
-        
+        barSetup(window, applicationContext)
 
         ViewCompat.setOnApplyWindowInsetsListener(
             findViewById(R.id.detail_container)
