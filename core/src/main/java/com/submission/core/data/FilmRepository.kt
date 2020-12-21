@@ -87,7 +87,7 @@ class FilmRepository(
                     emit(Resource.Success(data))
                 }
                 is ApiResponse.Empty -> emit(Resource.Success(DetailMovie()))
-                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Error -> emit(Resource.Error<DetailMovie>(apiResponse.errorMessage))
             }
         }
 
@@ -98,8 +98,8 @@ class FilmRepository(
                     val data = DataMapper.mapCastMovieResponseToDomain(apiResponse.data)
                     emit(Resource.Success(data))
                 }
-                is ApiResponse.Empty -> emit(Resource.Success(listOf()))
-                is ApiResponse.Error -> emit(Resource.Error(apiResponse.errorMessage))
+                is ApiResponse.Empty -> emit(Resource.Success<List<CastMovie>>(listOf()))
+                is ApiResponse.Error -> emit(Resource.Error<List<CastMovie>>(apiResponse.errorMessage))
             }
         }
 
