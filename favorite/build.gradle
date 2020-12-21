@@ -1,6 +1,5 @@
 apply plugin: "com.android.dynamic-feature"
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: "kotlin-kapt"
 apply from: '../shared_dependencies.gradle'
 
@@ -21,7 +20,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {

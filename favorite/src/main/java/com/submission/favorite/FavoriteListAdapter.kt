@@ -6,9 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.core.domain.usecase.model.FavoriteMovie
 import com.submission.core.utils.ComponentSetup
-import kotlinx.android.synthetic.main.favorite_item.view.*
+import com.submission.favorite.databinding.FavoriteItemBinding
 
 class FavoriteListAdapter : RecyclerView.Adapter<FavoriteListAdapter.FavoriteViewHoler>() {
+
+    private var _binding : FavoriteItemBinding? = null
+    private val binding get() = _binding!!
 
     private val listData = ArrayList<FavoriteMovie>()
     var removeData: ((FavoriteMovie) -> Unit)? = null
@@ -21,10 +24,10 @@ class FavoriteListAdapter : RecyclerView.Adapter<FavoriteListAdapter.FavoriteVie
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHoler =
-        FavoriteViewHoler(
-            LayoutInflater.from(parent.context).inflate(R.layout.favorite_item, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHoler {
+        _binding = FavoriteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FavoriteViewHoler(binding.root)
+    }
 
     override fun onBindViewHolder(holder: FavoriteViewHoler, position: Int) {
         val data = listData[position]
@@ -39,16 +42,16 @@ class FavoriteListAdapter : RecyclerView.Adapter<FavoriteListAdapter.FavoriteVie
                 poster_path?.let {
                     ComponentSetup.loadImage(
                         itemView.context,
-                        it, itemView.favorite_image
+                        it, binding.favoriteImage
                     )
                 }
-                itemView.favorite_title.text = title
-                itemView.favorite_date.text = ComponentSetup.dateFormat(release_date)
+                binding.favoriteTitle.text = title
+                binding.favoriteDate.text = ComponentSetup.dateFormat(release_date)
             }
         }
 
         init {
-            itemView.btn_remove.setOnClickListener {
+            binding.btnRemove.setOnClickListener {
                 removeData?.invoke(listData[adapterPosition])
                 ComponentSetup.setSnackbar(
                     itemView.context.getString(R.string.remove_favorite_message),
