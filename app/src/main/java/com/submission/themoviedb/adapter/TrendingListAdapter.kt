@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.core.domain.usecase.model.TrendingMovie
 import com.submission.core.utils.ComponentSetup
-import com.submission.themoviedb.R
-import kotlinx.android.synthetic.main.trending_item.view.*
+import com.submission.themoviedb.databinding.TrendingItemBinding
 
 class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHoler>() {
+
+    //View Binding
+    private var _binding : TrendingItemBinding? = null
+    private val binding get() = _binding!!
 
     private val listData = ArrayList<TrendingMovie>()
     var onClickItem : ((Int) -> Unit)? = null
@@ -21,10 +24,10 @@ class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHol
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHoler =
-        FilmViewHoler(
-            LayoutInflater.from(parent.context).inflate(R.layout.trending_item, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHoler {
+        _binding = TrendingItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FilmViewHoler(binding.root)
+    }
 
     override fun onBindViewHolder(holder: FilmViewHoler, position: Int) {
         val data = listData[position]
@@ -38,10 +41,10 @@ class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHol
             with(movie) {
                 ComponentSetup.loadImage(
                     itemView.context,
-                    poster_path, itemView.trending_image
+                    poster_path, binding.trendingImage
                 )
-                itemView.trending_title.text = title
-                itemView.trending_date.text = ComponentSetup.dateFormat(release_date)
+                binding.trendingTitle.text = title
+                binding.trendingDate.text = ComponentSetup.dateFormat(release_date)
             }
         }
         init {

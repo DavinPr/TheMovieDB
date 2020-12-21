@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.core.domain.usecase.model.CastMovie
 import com.submission.core.utils.ComponentSetup
-import com.submission.themoviedb.R
-import kotlinx.android.synthetic.main.cast_item.view.*
+import com.submission.themoviedb.databinding.CastItemBinding
 
 class CastListAdapter : RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
+
+    private var _binding : CastItemBinding? = null
+    private val binding get() = _binding!!
 
     private val listData = ArrayList<CastMovie>()
 
@@ -23,9 +25,10 @@ class CastListAdapter : RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CastViewHolder = CastViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.cast_item, parent, false)
-    )
+    ): CastViewHolder {
+        _binding = CastItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CastViewHolder(binding.root)
+    }
 
 
     override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
@@ -36,14 +39,14 @@ class CastListAdapter : RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
     override fun getItemCount(): Int = if (listData.size > 5) 5 else listData.size
 
 
-    class CastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(cast: CastMovie) {
-            itemView.cast_character.text = cast.character
-            itemView.cast_name.text = cast.name
+            binding.castCharacter.text = cast.character
+            binding.castName.text = cast.name
             cast.profile_path?.let {
                 ComponentSetup.loadImage(
                     itemView.context,
-                    it, itemView.cast_image
+                    it, binding.castImage
                 )
             }
         }

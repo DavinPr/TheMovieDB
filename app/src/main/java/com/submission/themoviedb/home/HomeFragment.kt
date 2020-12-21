@@ -13,20 +13,28 @@ import com.submission.core.utils.ComponentSetup
 import com.submission.themoviedb.R
 import com.submission.themoviedb.adapter.DiscoverListAdapter
 import com.submission.themoviedb.adapter.TrendingListAdapter
+import com.submission.themoviedb.databinding.FragmentHomeBinding
 import com.submission.themoviedb.detail.DetailActivity
-import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+    private var _binding : FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,14 +57,14 @@ class HomeFragment : Fragment() {
             homeViewModel.movieDiscover.observe(viewLifecycleOwner) { discover ->
                 if (discover != null) {
                     when (discover) {
-                        is Resource.Loading -> home_progressbar.visibility = View.VISIBLE
+                        is Resource.Loading -> binding.homeProgressbar.visibility = View.VISIBLE
                         is Resource.Success -> {
-                            home_progressbar.visibility = View.GONE
+                            binding.homeProgressbar.visibility = View.GONE
                             discoverAdapter.setData(discover.data)
                         }
                         is Resource.Error -> {
-                            home_progressbar.visibility = View.GONE
-                            ComponentSetup.setSnackbar(getString(R.string.error_value), rv_trending)
+                            binding.homeProgressbar.visibility = View.GONE
+                            ComponentSetup.setSnackbar(getString(R.string.error_value), binding.rvTrending)
                         }
                     }
                 }
@@ -64,27 +72,28 @@ class HomeFragment : Fragment() {
             homeViewModel.movieTrending.observe(viewLifecycleOwner) { trending ->
                 if (trending != null) {
                     when (trending) {
+                        is Resource.Loading -> binding.homeProgressbar.visibility = View.VISIBLE
                         is Resource.Success -> trendingAdapter.setData(trending.data)
                         is Resource.Error -> {
-                            home_progressbar.visibility = View.GONE
-                            ComponentSetup.setSnackbar(getString(R.string.error_value), rv_trending)
+                            binding.homeProgressbar.visibility = View.GONE
+                            ComponentSetup.setSnackbar(getString(R.string.error_value), binding.rvTrending)
                         }
                     }
                 }
             }
-            with(rv_discover) {
+            with(binding.rvDiscover) {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 setHasFixedSize(true)
                 adapter = discoverAdapter
             }
 
-            with(rv_trending) {
+            with(binding.rvTrending) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = trendingAdapter
             }
 
-            btn_list_favorite.setOnClickListener {
+            binding.btnListFavorite.setOnClickListener {
                 val uri = Uri.parse("favoriteapp://favorite")
                 startActivity(Intent(Intent.ACTION_VIEW, uri))
             }

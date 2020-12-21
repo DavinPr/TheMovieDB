@@ -6,11 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.core.domain.usecase.model.DiscoverMovie
 import com.submission.core.utils.ComponentSetup
-import com.submission.themoviedb.R
-import kotlinx.android.synthetic.main.discover_item.view.*
+import com.submission.themoviedb.databinding.DiscoverItemBinding
 
 class DiscoverListAdapter :
     RecyclerView.Adapter<DiscoverListAdapter.DiscoverViewHolder>() {
+
+    private var _binding : DiscoverItemBinding? = null
+    private val binding get() = _binding!!
+
     private var listData = ArrayList<DiscoverMovie>()
     var onClickItem: ((Int) -> Unit)? = null
 
@@ -21,10 +24,10 @@ class DiscoverListAdapter :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverViewHolder =
-        DiscoverViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.discover_item, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverViewHolder {
+        _binding = DiscoverItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DiscoverViewHolder(binding.root)
+    }
 
     override fun onBindViewHolder(holder: DiscoverViewHolder, position: Int) {
         val data = listData[position]
@@ -36,15 +39,15 @@ class DiscoverListAdapter :
     inner class DiscoverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: DiscoverMovie) {
             with(movie) {
-                itemView.discover_title.text = title
-                itemView.discover_rating_value.text = vote_average.toString()
-                itemView.discover_ratingbar.apply {
+                binding.discoverTitle.text = title
+                binding.discoverRatingValue.text = vote_average.toString()
+                binding.discoverRatingbar.apply {
                     stepSize = 0.1f
                     rating = vote_average.toFloat()
                 }
                 ComponentSetup.loadImage(
                     itemView.context,
-                    backdrop_path, itemView.discover_image
+                    backdrop_path, binding.discoverImage
                 )
             }
         }

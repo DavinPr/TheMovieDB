@@ -12,8 +12,7 @@ import com.submission.core.data.Resource
 import com.submission.core.utils.ComponentSetup
 import com.submission.themoviedb.R
 import com.submission.themoviedb.adapter.SearchListAdapter
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.search_fragment.*
+import com.submission.themoviedb.databinding.SearchFragmentBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
@@ -24,12 +23,15 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class SearchFragment : Fragment() {
 
     private val searchViewModel: SearchViewModel by viewModel()
+    private var _binding : SearchFragmentBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.search_fragment, container, false)
+    ): View {
+        _binding = SearchFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -37,7 +39,7 @@ class SearchFragment : Fragment() {
 
         if (activity != null) {
             val searchAdapter = SearchListAdapter()
-            search_view.apply {
+            binding.searchView.apply {
                 isIconified = false
                 onActionViewExpanded()
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -52,15 +54,15 @@ class SearchFragment : Fragment() {
                             }
                             searchViewModel.searchResult.observe(viewLifecycleOwner) { result ->
                                 when (result) {
-                                    is Resource.Loading -> search_progressbar.visibility =
+                                    is Resource.Loading -> binding.searchProgressbar.visibility =
                                         View.VISIBLE
                                     is Resource.Success -> {
-                                        search_progressbar.visibility = View.GONE
+                                        binding.searchProgressbar.visibility = View.GONE
                                         searchAdapter.setData(result.data)
                                     }
                                     is Resource.Error -> {
-                                        search_progressbar.visibility = View.GONE
-                                        ComponentSetup.setSnackbar(getString(R.string.error_value), rv_trending)
+                                        binding.searchProgressbar.visibility = View.GONE
+                                        ComponentSetup.setSnackbar(getString(R.string.error_value), binding.rvSearch)
                                     }
                                 }
                             }
@@ -69,7 +71,7 @@ class SearchFragment : Fragment() {
                     }
                 })
             }
-            with(rv_search) {
+            with(binding.rvSearch) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = searchAdapter
