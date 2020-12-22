@@ -1,7 +1,6 @@
 package com.submission.themoviedb.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.core.domain.usecase.model.TrendingMovie
@@ -10,12 +9,8 @@ import com.submission.themoviedb.databinding.TrendingItemBinding
 
 class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHoler>() {
 
-    //View Binding
-    private var _binding : TrendingItemBinding? = null
-    private val binding get() = _binding!!
-
     private val listData = ArrayList<TrendingMovie>()
-    var onClickItem : ((Int) -> Unit)? = null
+    var onClickItem: ((Int) -> Unit)? = null
 
     fun setData(newlistData: List<TrendingMovie>?) {
         if (newlistData == null) return
@@ -25,8 +20,9 @@ class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHol
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHoler {
-        _binding = TrendingItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FilmViewHoler(binding.root)
+        val binding =
+            TrendingItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FilmViewHoler(binding)
     }
 
     override fun onBindViewHolder(holder: FilmViewHoler, position: Int) {
@@ -36,7 +32,8 @@ class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHol
 
     override fun getItemCount(): Int = listData.size
 
-    inner class FilmViewHoler(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FilmViewHoler(private val binding: TrendingItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: TrendingMovie) {
             with(movie) {
                 ComponentSetup.loadImage(
@@ -47,6 +44,7 @@ class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHol
                 binding.trendingDate.text = ComponentSetup.dateFormat(release_date)
             }
         }
+
         init {
             itemView.setOnClickListener {
                 onClickItem?.invoke(listData[adapterPosition].id)

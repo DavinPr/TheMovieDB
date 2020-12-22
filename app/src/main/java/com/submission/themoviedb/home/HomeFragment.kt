@@ -9,8 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.core.data.Resource
-import com.submission.core.utils.ComponentSetup
-import com.submission.themoviedb.R
 import com.submission.themoviedb.adapter.DiscoverListAdapter
 import com.submission.themoviedb.adapter.TrendingListAdapter
 import com.submission.themoviedb.databinding.FragmentHomeBinding
@@ -64,7 +62,7 @@ class HomeFragment : Fragment() {
                         }
                         is Resource.Error -> {
                             binding.homeProgressbar.visibility = View.GONE
-                            ComponentSetup.setSnackbar(getString(R.string.error_value), binding.rvTrending)
+                            binding.viewError.root.visibility = View.VISIBLE
                         }
                     }
                 }
@@ -76,7 +74,7 @@ class HomeFragment : Fragment() {
                         is Resource.Success -> trendingAdapter.setData(trending.data)
                         is Resource.Error -> {
                             binding.homeProgressbar.visibility = View.GONE
-                            ComponentSetup.setSnackbar(getString(R.string.error_value), binding.rvTrending)
+                            binding.viewError.root.visibility = View.VISIBLE
                         }
                     }
                 }

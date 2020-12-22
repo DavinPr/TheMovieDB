@@ -23,7 +23,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class SearchFragment : Fragment() {
 
     private val searchViewModel: SearchViewModel by viewModel()
-    private var _binding : SearchFragmentBinding? = null
+    private var _binding: SearchFragmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -62,7 +62,7 @@ class SearchFragment : Fragment() {
                                     }
                                     is Resource.Error -> {
                                         binding.searchProgressbar.visibility = View.GONE
-                                        ComponentSetup.setSnackbar(getString(R.string.error_value), binding.rvSearch)
+                                        binding.viewError.root.visibility = View.VISIBLE
                                     }
                                 }
                             }

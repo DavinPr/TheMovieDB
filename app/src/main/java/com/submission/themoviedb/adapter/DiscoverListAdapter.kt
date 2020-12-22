@@ -1,7 +1,6 @@
 package com.submission.themoviedb.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.core.domain.usecase.model.DiscoverMovie
@@ -10,9 +9,6 @@ import com.submission.themoviedb.databinding.DiscoverItemBinding
 
 class DiscoverListAdapter :
     RecyclerView.Adapter<DiscoverListAdapter.DiscoverViewHolder>() {
-
-    private var _binding : DiscoverItemBinding? = null
-    private val binding get() = _binding!!
 
     private var listData = ArrayList<DiscoverMovie>()
     var onClickItem: ((Int) -> Unit)? = null
@@ -25,8 +21,9 @@ class DiscoverListAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverViewHolder {
-        _binding = DiscoverItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DiscoverViewHolder(binding.root)
+        val binding =
+            DiscoverItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DiscoverViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DiscoverViewHolder, position: Int) {
@@ -36,7 +33,8 @@ class DiscoverListAdapter :
 
     override fun getItemCount(): Int = listData.size
 
-    inner class DiscoverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class DiscoverViewHolder(private val binding: DiscoverItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: DiscoverMovie) {
             with(movie) {
                 binding.discoverTitle.text = title

@@ -1,7 +1,6 @@
 package com.submission.themoviedb.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.core.domain.usecase.model.CastMovie
@@ -9,9 +8,6 @@ import com.submission.core.utils.ComponentSetup
 import com.submission.themoviedb.databinding.CastItemBinding
 
 class CastListAdapter : RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
-
-    private var _binding : CastItemBinding? = null
-    private val binding get() = _binding!!
 
     private val listData = ArrayList<CastMovie>()
 
@@ -26,8 +22,8 @@ class CastListAdapter : RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
         parent: ViewGroup,
         viewType: Int
     ): CastViewHolder {
-        _binding = CastItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CastViewHolder(binding.root)
+        val binding = CastItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CastViewHolder(binding)
     }
 
 
@@ -39,7 +35,7 @@ class CastListAdapter : RecyclerView.Adapter<CastListAdapter.CastViewHolder>() {
     override fun getItemCount(): Int = if (listData.size > 5) 5 else listData.size
 
 
-    inner class CastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CastViewHolder(private val binding: CastItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cast: CastMovie) {
             binding.castCharacter.text = cast.character
             binding.castName.text = cast.name
