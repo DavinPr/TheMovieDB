@@ -33,7 +33,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val appExec
                     is ApiResponse.Error -> {
                         onFetchFailed()
                         emit(
-                            Resource.Error(
+                            Resource.Error<ResultType>(
                                 apiResponse.errorMessage
                             )
                         )

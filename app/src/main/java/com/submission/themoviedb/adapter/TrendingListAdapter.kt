@@ -1,18 +1,16 @@
 package com.submission.themoviedb.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.core.domain.usecase.model.TrendingMovie
 import com.submission.core.utils.ComponentSetup
-import com.submission.themoviedb.R
-import kotlinx.android.synthetic.main.trending_item.view.*
+import com.submission.themoviedb.databinding.TrendingItemBinding
 
 class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHoler>() {
 
     private val listData = ArrayList<TrendingMovie>()
-    var onClickItem : ((Int) -> Unit)? = null
+    var onClickItem: ((Int) -> Unit)? = null
 
     fun setData(newlistData: List<TrendingMovie>?) {
         if (newlistData == null) return
@@ -21,10 +19,11 @@ class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHol
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHoler =
-        FilmViewHoler(
-            LayoutInflater.from(parent.context).inflate(R.layout.trending_item, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHoler {
+        val binding =
+            TrendingItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FilmViewHoler(binding)
+    }
 
     override fun onBindViewHolder(holder: FilmViewHoler, position: Int) {
         val data = listData[position]
@@ -33,17 +32,19 @@ class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHol
 
     override fun getItemCount(): Int = listData.size
 
-    inner class FilmViewHoler(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FilmViewHoler(private val binding: TrendingItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: TrendingMovie) {
             with(movie) {
                 ComponentSetup.loadImage(
                     itemView.context,
-                    poster_path, itemView.trending_image
+                    poster_path, binding.trendingImage
                 )
-                itemView.trending_title.text = title
-                itemView.trending_date.text = ComponentSetup.dateFormat(release_date)
+                binding.trendingTitle.text = title
+                binding.trendingDate.text = ComponentSetup.dateFormat(release_date)
             }
         }
+
         init {
             itemView.setOnClickListener {
                 onClickItem?.invoke(listData[adapterPosition].id)
