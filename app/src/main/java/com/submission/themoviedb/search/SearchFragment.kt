@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.core.data.Resource
-import com.submission.core.utils.ComponentSetup
-import com.submission.themoviedb.R
 import com.submission.themoviedb.adapter.SearchListAdapter
 import com.submission.themoviedb.databinding.SearchFragmentBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
