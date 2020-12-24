@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TheMovieDB</string>
+    <string name="app_name">The Movie DB</string>
     <string name="trending">Trending</string>
     <string name="number_val">99</string>
     <string name="runtime">Runtime</string>
