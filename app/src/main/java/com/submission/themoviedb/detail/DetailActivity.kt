@@ -113,7 +113,7 @@ class DetailActivity : AppCompatActivity() {
     private fun showDetailMovie(detailMovie: DetailMovie?) {
         detailMovie?.let { detail ->
             binding.detailTitle.text = detail.title
-            binding.detailTopContainer.detailDate.text = ComponentSetup.dateFormat(detail.release_date)
+            binding.detailTopContainer.detailDate.text = ComponentSetup.dateFormat(detail.release_date, binding.root.context)
             binding.detailTopContainer.detailRuntime.text = ComponentSetup.runtimeFormat(detail.runtime)
             val listGenre = ArrayList<String>()
             detail.genreMovie?.map {

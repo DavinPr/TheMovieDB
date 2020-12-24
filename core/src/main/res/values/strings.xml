@@ -3,4 +3,6 @@
     <string name="film_image">Film Image</string>
     <string name="title">Title</string>
     <string name="date">Month dd, YY</string>
+    <string name="no_data">No data</string>
+    <string name="not_found">Movie Not Found</string>
 </resources>

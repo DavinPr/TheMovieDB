@@ -41,7 +41,7 @@ class TrendingListAdapter : RecyclerView.Adapter<TrendingListAdapter.FilmViewHol
                     poster_path, binding.trendingImage
                 )
                 binding.trendingTitle.text = title
-                binding.trendingDate.text = ComponentSetup.dateFormat(release_date)
+                binding.trendingDate.text = ComponentSetup.dateFormat(release_date, binding.root.context)
             }
         }
 

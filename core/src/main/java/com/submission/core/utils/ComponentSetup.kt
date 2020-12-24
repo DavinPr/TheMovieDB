@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.submission.core.R
 import java.text.SimpleDateFormat
+import java.util.*
 
 object ComponentSetup {
     fun loadImage(context: Context, path: String, view: ImageView) {
@@ -17,16 +19,14 @@ object ComponentSetup {
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun dateFormat(date: String?): String? {
-        if (date == null || date.isEmpty()) return null
-
-        val currentDateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val newDateFormat = SimpleDateFormat("MMM dd, yyyy")
-        val currentDate = currentDateFormat.parse(date)
-        return if (currentDate != null) {
-            newDateFormat.format(currentDate)
+    fun dateFormat(date: String?, context: Context): String {
+        return if (date == null || date.isEmpty()) {
+            context.getString(R.string.no_data)
         } else {
-            null
+            val currentDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale("en", "US"))
+            val newDateFormat = SimpleDateFormat("MMM dd, yyyy", Locale("en", "US"))
+            val currentDate = currentDateFormat.parse(date)
+            newDateFormat.format(currentDate!!)
         }
     }
 

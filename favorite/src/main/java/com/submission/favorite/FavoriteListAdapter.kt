@@ -46,7 +46,7 @@ class FavoriteListAdapter : RecyclerView.Adapter<FavoriteListAdapter.FavoriteVie
                     )
                 }
                 binding.favoriteTitle.text = title
-                binding.favoriteDate.text = ComponentSetup.dateFormat(release_date)
+                binding.favoriteDate.text = ComponentSetup.dateFormat(release_date, binding.root.context)
             }
         }
 

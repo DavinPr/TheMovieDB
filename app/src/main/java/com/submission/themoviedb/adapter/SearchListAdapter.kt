@@ -42,7 +42,7 @@ class SearchListAdapter : RecyclerView.Adapter<SearchListAdapter.SearchViewHoler
                     )
                 }
                 binding.searchTitle.text = title
-                binding.searchDate.text = ComponentSetup.dateFormat(release_date)
+                binding.searchDate.text = ComponentSetup.dateFormat(release_date, binding.root.context)
             }
         }
 

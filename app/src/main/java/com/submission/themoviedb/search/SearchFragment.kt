@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.submission.core.data.Resource
+import com.submission.themoviedb.R
 import com.submission.themoviedb.adapter.SearchListAdapter
 import com.submission.themoviedb.databinding.SearchFragmentBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -46,7 +49,10 @@ class SearchFragment : Fragment() {
                     }
 
                     override fun onQueryTextChange(query: String?): Boolean {
-                        if (query != null) {
+                        if (query.isNullOrEmpty()) {
+                            binding.viewError.root.visibility = View.GONE
+                            searchAdapter.setData(listOf())
+                        } else {
                             lifecycleScope.launch {
                                 searchViewModel.queryChannel.send(query)
                             }
@@ -56,7 +62,20 @@ class SearchFragment : Fragment() {
                                         View.VISIBLE
                                     is Resource.Success -> {
                                         binding.searchProgressbar.visibility = View.GONE
-                                        searchAdapter.setData(result.data)
+                                        if (result.data?.isNotEmpty() == true) {
+                                            binding.viewError.root.visibility = View.GONE
+                                            searchAdapter.setData(result.data)
+                                        } else {
+                                            searchAdapter.setData(listOf())
+                                            binding.viewError.tvError.text = context.getString(R.string.not_found)
+                                            binding.viewError.imageView.apply {
+                                                cropToPadding = true
+                                                Glide.with(context)
+                                                    .load(ContextCompat.getDrawable(context, R.drawable.illus_empty))
+                                                    .into(this)
+                                            }
+                                            binding.viewError.root.visibility = View.VISIBLE
+                                        }
                                     }
                                     is Resource.Error -> {
                                         binding.searchProgressbar.visibility = View.GONE
