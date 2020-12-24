@@ -58,11 +58,12 @@ class SearchFragment : Fragment() {
                             }
                             searchViewModel.searchResult.observe(viewLifecycleOwner) { result ->
                                 when (result) {
-                                    is Resource.Loading -> binding.searchProgressbar.visibility =
+                                    is Resource.Loading -> binding.searchProgresbar.visibility =
                                         View.VISIBLE
                                     is Resource.Success -> {
-                                        binding.searchProgressbar.visibility = View.GONE
+                                        binding.searchProgresbar.visibility = View.GONE
                                         if (result.data?.isNotEmpty() == true) {
+                                            binding.rvSearch.visibility = View.VISIBLE
                                             binding.viewError.root.visibility = View.GONE
                                             searchAdapter.setData(result.data)
                                         } else {
@@ -78,7 +79,7 @@ class SearchFragment : Fragment() {
                                         }
                                     }
                                     is Resource.Error -> {
-                                        binding.searchProgressbar.visibility = View.GONE
+                                        binding.searchProgresbar.visibility = View.GONE
                                         binding.viewError.root.visibility = View.VISIBLE
                                     }
                                 }
