@@ -1,7 +1,6 @@
 package com.submission.themoviedb.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +15,7 @@ import com.submission.themoviedb.adapter.CastListAdapter
 import com.submission.themoviedb.databinding.ActivityDetailBinding
 import com.submission.themoviedb.helper.barSetup
 import org.koin.android.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class DetailActivity : AppCompatActivity() {
     companion object {
@@ -51,14 +51,12 @@ class DetailActivity : AppCompatActivity() {
         detailViewModel.detailCast(id).observe(this) { cast ->
             when (cast) {
                 is Resource.Loading -> {
-                    Log.d("cast", "loading")
+                    Timber.d("Cast Movie Loading")
                 }
                 is Resource.Success -> {
-                    Log.d("cast", cast.data.toString())
                     castAdapter.setData(cast.data)
                 }
                 is Resource.Error -> {
-                    Log.d("cast", "error")
                     ComponentSetup.setSnackbar(getString(R.string.cast_error_value), binding.detailBottomContainer.rvCast)
                 }
             }
