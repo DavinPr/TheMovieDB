@@ -31,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        barSetup(window, applicationContext)
+        barSetup(window, applicationContext, true)
 
         ViewCompat.setOnApplyWindowInsetsListener(
             findViewById(R.id.detail_container)

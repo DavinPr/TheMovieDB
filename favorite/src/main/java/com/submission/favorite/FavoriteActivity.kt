@@ -25,7 +25,7 @@ class FavoriteActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        barSetup(window, applicationContext)
+        barSetup(window, applicationContext, false)
 
         loadKoinModules(favoriteModule)
 
