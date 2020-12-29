@@ -38,7 +38,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/trending_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -63,7 +62,6 @@
                 app:layout_constraintTop_toTopOf="@+id/cardView" />
 
             <TextView
-                android:id="@+id/trending_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/date"

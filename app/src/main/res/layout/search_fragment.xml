@@ -45,7 +45,7 @@
         tools:listitem="@layout/search_item" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/search_progresbar"
+        android:id="@+id/search_progress_bar"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"

@@ -56,10 +56,11 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/circle"
-        android:backgroundTint="@color/favorite"
+        android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_remove"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@null" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

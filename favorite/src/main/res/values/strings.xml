@@ -1,5 +1,4 @@
 <resources>
-    <string name="error_value">Oops … Something went wrong!</string>
     <string name="remove_favorite_message">Movie remove from Favorite</string>
     <string name="empty_favorite">There is no item</string>
 </resources>

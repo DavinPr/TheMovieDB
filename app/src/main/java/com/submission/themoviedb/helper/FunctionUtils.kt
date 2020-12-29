@@ -4,8 +4,12 @@ import android.content.Context
 import android.os.Build
 import android.view.*
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.submission.themoviedb.R
+import jp.wasabeef.glide.transformations.BlurTransformation
 
 fun barSetup(window: Window, context: Context, hide: Boolean) {
     window.apply {
@@ -17,9 +21,7 @@ fun barSetup(window: Window, context: Context, hide: Boolean) {
                 setDecorFitsSystemWindows(false)
                 window.insetsController?.let {
                     if (hide) {
-                        it.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-                        it.systemBarsBehavior =
-                            WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                        window.insetsController?.hide(WindowInsets.Type.statusBars())
                     } else {
                         it.show(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
                     }
@@ -48,4 +50,12 @@ fun barSetup(window: Window, context: Context, hide: Boolean) {
         }
         statusBarColor = ContextCompat.getColor(context, R.color.mainBackground)
     }
+}
+
+fun blurredImage(context: Context, path: String, view: ImageView) {
+    view.cropToPadding = true
+    Glide.with(context)
+        .load("https://image.tmdb.org/t/p/w500$path")
+        .apply(RequestOptions.bitmapTransform(BlurTransformation(25,3)))
+        .into(view)
 }
