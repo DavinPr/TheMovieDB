@@ -15,3 +15,5 @@ Debugging
   
 UI  
 - Use Lottie Library for SplashScreen Animation
+- Use Shimmer for Loading
+- Remake detail layout
