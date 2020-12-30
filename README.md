@@ -1,11 +1,11 @@
-##TheMovieDB
+#The Movie DB
 
-#New Feature :  
+New Feature :
   
 Security
 - Add SQLChiper for Database Encryption  
 - Add Obfuscation  
-- Add Certificate Pinning  
+- Add Certificate Pinning
   
 Performance  
 - Add Leak Canary  

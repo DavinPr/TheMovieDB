@@ -12,7 +12,6 @@
     <string name="favorite">Favorite</string>
     <string name="title_home">Home</string>
     <string name="search">Search</string>
-    <string name="profile">Profile</string>
     <string name="discover_foreground">Discover Foreground</string>
     <string name="discover">Discover</string>
     <string name="search_here">Search Here</string>
@@ -31,4 +30,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="cast">Cast</string>
     <string name="attribute">Attribute</string>
+    <string name="about">About</string>
+    <string name="my_name">Aditya Davin Pradana</string>
+    <string name="github_link">https://github.com/DavinPr</string>
+    <string name="gmail_address">adityadavinp@gmail.com</string>
+    <string name="ig_link">https://www.instagram.com/aditya_davin/</string>
 </resources>
