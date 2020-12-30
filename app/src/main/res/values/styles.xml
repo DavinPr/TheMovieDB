@@ -7,6 +7,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.splashscreen_background" parent="AppTheme">
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.white_background" parent="AppTheme">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="AppTheme.main_background" parent="AppTheme">
+        <item name="android:background">@color/mainBackground</item>
+    </style>
+
+    <style name="AppTheme.light_status_bar" parent="AppTheme">
+        <item name="android:statusBarColor">@color/mainBackground</item>
+    </style>
+
     <style name="text_appname_style">
         <item name="android:textColor">@color/textBlackColor</item>
         <item name="android:fontFamily">@font/poppins_semibolditalic</item>

@@ -17,8 +17,8 @@
         tools:layout="@layout/search_fragment" />
 
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.submission.themoviedb.profile.ProfileFragment"
-        android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/navigation_about"
+        android:name="com.submission.themoviedb.about.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

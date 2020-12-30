@@ -59,4 +59,14 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
     implementation "de.hdodenhof:circleimageview:3.1.0"
+
+    //lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    //shimmer
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+
+    //blurred image
+    implementation 'jp.wasabeef:glide-transformations:4.1.0'
+    implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
 }

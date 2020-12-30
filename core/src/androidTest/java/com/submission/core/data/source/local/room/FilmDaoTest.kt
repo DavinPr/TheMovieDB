@@ -7,7 +7,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.androiddevs.shoppinglisttestingyt.getOrAwaitValue
+import com.submission.core.getOrAwaitValue
 import com.submission.core.data.source.local.entity.DiscoverMovieEntity
 import com.submission.core.data.source.local.entity.FavoriteMovieEntity
 import com.submission.core.data.source.local.entity.TrendingMovieEntity

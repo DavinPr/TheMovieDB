@@ -21,51 +21,57 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/discover_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#DDDDDD"
                 android:contentDescription="@string/discover"
                 android:scaleType="centerCrop" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/discover_foreground"
-                android:contentDescription="@string/discover_foreground" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#7F000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
-
-            <RatingBar
+            <View
                 android:id="@+id/discover_ratingbar"
                 style="@style/Base.Widget.AppCompat.RatingBar.Small"
                 android:layout_width="80dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:isIndicator="true"
                 android:numStars="10"
                 android:progressTint="@color/ratingColor"
+                android:background="#DDDDDD"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
             <TextView
-                android:id="@+id/discover_rating_value"
-                style="@style/text_rating_value_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@string/number_val"
+                android:background="#DDDDDD"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#00FFFFFF"
                 app:layout_constraintBottom_toBottomOf="@+id/discover_ratingbar"
                 app:layout_constraintStart_toEndOf="@+id/discover_ratingbar"
                 app:layout_constraintTop_toTopOf="@+id/discover_ratingbar" />
 
             <TextView
-                android:id="@+id/discover_title"
-                style="@style/text_inside_poster_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:maxLines="3"
                 android:text="@string/title"
+                android:background="#DDDDDD"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#00FFFFFF"
                 app:layout_constraintStart_toStartOf="@+id/discover_ratingbar"
                 app:layout_constraintTop_toBottomOf="@+id/discover_ratingbar" />
 
