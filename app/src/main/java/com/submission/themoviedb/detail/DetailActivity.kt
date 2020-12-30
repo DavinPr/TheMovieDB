@@ -1,9 +1,9 @@
 package com.submission.themoviedb.detail
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.ViewCompat
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -39,16 +39,13 @@ class DetailActivity : AppCompatActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(
             findViewById(R.id.detail_container)
         ) { _, insets ->
-            val margin = insets.systemWindowInsetTop+16
-            binding.detailContainer.getConstraintSet(R.id.set1)
-                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, margin)
-            binding.detailContainer.getConstraintSet(R.id.set2)
-                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, margin)
-            binding.detailContainer.getConstraintSet(R.id.set3)
-                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, margin)
+            val margin = insets.systemWindowInsetTop + 16
+            val menuLayoutParams =
+                binding.detailBtnBack.layoutParams as ViewGroup.MarginLayoutParams
+            menuLayoutParams.setMargins(0, margin, 0, 0)
+            binding.detailBtnBack.layoutParams = menuLayoutParams
             insets.consumeSystemWindowInsets()
         }
-
 
 
         val id = intent.getIntExtra(EXTRA_DATA, 0)
@@ -58,8 +55,15 @@ class DetailActivity : AppCompatActivity() {
 
         detailViewModel.detailData(id).observe(this) { detail ->
             when (detail) {
-                is Resource.Loading -> Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                is Resource.Loading -> {
+                    binding.detailContainer.root.visibility = View.GONE
+                    binding.detailBtnFavorite.visibility = View.GONE
+                    binding.detailProgressBar.root.visibility = View.VISIBLE
+                }
                 is Resource.Success -> {
+                    binding.detailContainer.root.visibility = View.VISIBLE
+                    binding.detailBtnFavorite.visibility = View.VISIBLE
+                    binding.detailProgressBar.root.visibility = View.GONE
                     showDetailMovie(detail.data)
                     detail.data?.let { setDataBundle(it) }
                         ?.let { sectionsPagerAdapter.setAttributeBundle(it) }
@@ -75,13 +79,13 @@ class DetailActivity : AppCompatActivity() {
                         if (isChecked) {
                             ComponentSetup.setSnackbar(
                                 getString(R.string.add_favorite_message),
-                                binding.dataActivityDetail.detailTabLayout
+                                binding.detailContainer.dataActivityDetail.detailTabLayout
                             )
                             favoriteData?.let { detailViewModel.insertFavorite(it) }
                         } else {
                             ComponentSetup.setSnackbar(
                                 getString(R.string.remove_favorite_message),
-                                binding.dataActivityDetail.detailTabLayout
+                                binding.detailContainer.dataActivityDetail.detailTabLayout
                             )
                             favoriteData?.let { detailViewModel.deleteFavorite(it) }
                         }
@@ -90,7 +94,10 @@ class DetailActivity : AppCompatActivity() {
 
                 }
                 is Resource.Error -> {
-//                    ComponentSetup.setSnackbar(getString(R.string.error_value), binding.detailBottomContainer.rvCast)
+                    binding.detailContainer.root.visibility = View.GONE
+                    binding.detailBtnFavorite.visibility = View.GONE
+                    binding.detailProgressBar.root.visibility = View.GONE
+                    binding.viewError.root.visibility = View.VISIBLE
                 }
             }
         }
@@ -110,31 +117,37 @@ class DetailActivity : AppCompatActivity() {
 
     private fun showDetailMovie(detailMovie: DetailMovie?) {
         detailMovie?.let { detail ->
-            binding.detailTopContainer.detailTitle.text = detail.title
-            binding.detailTopContainer.detailDate.text =
+            binding.detailContainer.detailTopContainer.detailTitle.text = detail.title
+            binding.detailContainer.detailTopContainer.detailDate.text =
                 ComponentSetup.dateFormat(detail.release_date, binding.root.context)
-            binding.detailTopContainer.detailRuntime.text =
+            binding.detailContainer.detailTopContainer.detailRuntime.text =
                 ComponentSetup.runtimeFormat(detail.runtime)
             val listGenre = ArrayList<String>()
             detail.genreMovie?.map {
                 listGenre.add(it.name)
             }
-            binding.detailTopContainer.detailGenre.text = listGenre.toString()
+            binding.detailContainer.detailTopContainer.detailGenre.text = listGenre.toString()
             detail.poster_path?.let {
                 ComponentSetup.loadImage(
                     this,
                     it,
-                    binding.detailPoster
+                    binding.detailContainer.detailPoster
                 )
             }
-            detail.backdrop_path?.let { blurredImage(this, it, binding.detailBackdrop) }
+            detail.backdrop_path?.let {
+                blurredImage(
+                    this,
+                    it,
+                    binding.detailContainer.detailBackdrop
+                )
+            }
         }
     }
 
     private fun setTabLayout() {
-        val viewPager: ViewPager = binding.dataActivityDetail.viewPager
+        val viewPager: ViewPager = binding.detailContainer.dataActivityDetail.viewPager
         viewPager.adapter = sectionsPagerAdapter
-        val tabLayout: TabLayout = binding.dataActivityDetail.detailTabLayout
+        val tabLayout: TabLayout = binding.detailContainer.dataActivityDetail.detailTabLayout
         tabLayout.setupWithViewPager(viewPager)
     }
 

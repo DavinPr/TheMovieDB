@@ -52,6 +52,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </Constraint>
+        <Constraint
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/detail_progress_bar" />
     </ConstraintSet>
 
     <!--   Second Set   -->
