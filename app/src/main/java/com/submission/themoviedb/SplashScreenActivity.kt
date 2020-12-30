@@ -15,7 +15,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        barSetup(window, applicationContext, true)
+        barSetup(window, true)
         Handler(Looper.getMainLooper()).postDelayed(
             {
                 startActivity(Intent(this, MainActivity::class.java))

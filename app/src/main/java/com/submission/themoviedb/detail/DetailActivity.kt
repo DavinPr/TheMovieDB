@@ -34,17 +34,18 @@ class DetailActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        barSetup(window, applicationContext, true)
+        barSetup(window, true)
 
         ViewCompat.setOnApplyWindowInsetsListener(
             findViewById(R.id.detail_container)
         ) { _, insets ->
+            val margin = insets.systemWindowInsetTop+16
             binding.detailContainer.getConstraintSet(R.id.set1)
-                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, insets.systemWindowInsetTop+16)
+                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, margin)
             binding.detailContainer.getConstraintSet(R.id.set2)
-                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, insets.systemWindowInsetTop+16)
+                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, margin)
             binding.detailContainer.getConstraintSet(R.id.set3)
-                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, insets.systemWindowInsetTop+16)
+                ?.setMargin(R.id.detail_btn_back, ConstraintSet.TOP, margin)
             insets.consumeSystemWindowInsets()
         }
 
@@ -96,7 +97,6 @@ class DetailActivity : AppCompatActivity() {
         binding.detailBtnBack.setOnClickListener {
             finish()
         }
-
     }
 
     override fun onStart() {

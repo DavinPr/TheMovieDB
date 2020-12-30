@@ -69,7 +69,7 @@ class SearchFragment : Fragment() {
                                         } else {
                                             searchAdapter.setData(listOf())
                                             binding.viewError.tvError.text = context.getString(R.string.not_found)
-                                            binding.viewError.imageView.apply {
+                                            binding.viewError.imgError.apply {
                                                 cropToPadding = true
                                                 Glide.with(context)
                                                     .load(ContextCompat.getDrawable(context, R.drawable.illus_empty))

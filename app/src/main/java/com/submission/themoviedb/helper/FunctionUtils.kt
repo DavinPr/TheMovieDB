@@ -2,16 +2,17 @@ package com.submission.themoviedb.helper
 
 import android.content.Context
 import android.os.Build
-import android.view.*
+import android.view.View
+import android.view.Window
+import android.view.WindowInsets
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+import android.view.WindowManager
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.submission.themoviedb.R
 import jp.wasabeef.glide.transformations.BlurTransformation
 
-fun barSetup(window: Window, context: Context, hide: Boolean) {
+fun barSetup(window: Window, hide: Boolean) {
     window.apply {
         addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
@@ -48,7 +49,6 @@ fun barSetup(window: Window, context: Context, hide: Boolean) {
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             }
         }
-        statusBarColor = ContextCompat.getColor(context, R.color.mainBackground)
     }
 }
 

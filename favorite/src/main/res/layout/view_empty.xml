@@ -3,15 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/AppTheme.main_background">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/img_error"
+        android:id="@+id/img_empty"
         android:layout_width="225dp"
         android:layout_height="225dp"
         android:contentDescription="@string/illustration_denied"
-        android:src="@drawable/illus_denied"
+        android:src="@drawable/illus_empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,9 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/something_wrong"
+        android:text="@string/empty_favorite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_error" />
+        app:layout_constraintTop_toBottomOf="@+id/img_empty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
