@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TheMovieDB</string>
+    <string name="app_name">The Movie DB</string>
     <string name="trending">Trending</string>
     <string name="number_val">99</string>
     <string name="runtime">Runtime</string>
@@ -12,7 +12,6 @@
     <string name="favorite">Favorite</string>
     <string name="title_home">Home</string>
     <string name="search">Search</string>
-    <string name="profile">Profile</string>
     <string name="discover_foreground">Discover Foreground</string>
     <string name="discover">Discover</string>
     <string name="search_here">Search Here</string>
@@ -22,12 +21,18 @@
     <string name="date_title">Date</string>
     <string name="runtime_value">1 hour 2 minutes</string>
     <string name="rating">Rating</string>
-    <string name="error_value">Oops … Something went wrong!</string>
-    <string name="cast_error_value">Error while load cast!</string>
     <string name="title_favorite">Favorite</string>
     <string name="add_favorite_message">Movie add to Favorite</string>
     <string name="remove_favorite_message">Movie remove from Favorite</string>
     <string name="character">Character</string>
     <string name="illustration_denied">Illustration Denied</string>
     <string name="something_wrong">Something Went Wrong</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="cast">Cast</string>
+    <string name="attribute">Attribute</string>
+    <string name="about">About</string>
+    <string name="my_name">Aditya Davin Pradana</string>
+    <string name="github_link">https://github.com/DavinPr</string>
+    <string name="gmail_address">adityadavinp@gmail.com</string>
+    <string name="ig_link">https://www.instagram.com/aditya_davin/</string>
 </resources>

@@ -16,7 +16,7 @@ import org.koin.core.context.loadKoinModules
 
 class FavoriteActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityFavoriteBinding
+    private lateinit var binding: ActivityFavoriteBinding
     private val favoriteViewModel: FavoriteViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +25,12 @@ class FavoriteActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        barSetup(window, applicationContext, false)
+        barSetup(window, false)
 
         loadKoinModules(favoriteModule)
 
         getFavoriteData()
+        back()
     }
 
     private fun getFavoriteData() {
@@ -49,12 +50,13 @@ class FavoriteActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         binding.favoriteProgressbar.visibility = View.GONE
                         favoriteAdapter.setData(favorite.data)
+
                         favorite.data?.let {
                             if (it.isEmpty()) {
-                                binding.tvEmpty.visibility = View.VISIBLE
+                                binding.viewEmpty.root.visibility = View.VISIBLE
                                 binding.rvFavorite.visibility = View.GONE
                             } else {
-                                binding.tvEmpty.visibility = View.GONE
+                                binding.viewEmpty.root.visibility = View.GONE
                                 binding.rvFavorite.visibility = View.VISIBLE
                             }
                         }
@@ -74,5 +76,11 @@ class FavoriteActivity : AppCompatActivity() {
             .tint(ContextCompat.getColor(applicationContext, R.color.divideColor))
             .build()
             .addTo(binding.rvFavorite)
+    }
+
+    private fun back() {
+        binding.favoriteBtnBack.setOnClickListener {
+            finish()
+        }
     }
 }

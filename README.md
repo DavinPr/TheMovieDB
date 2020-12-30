@@ -1,14 +1,17 @@
-## TheMovieDB
+#The Movie DB
 
-#New Feature :  
+New Feature :
   
 Security
-- Penerapan SQLChiper for Database Encryption  
-- Penerapan Obfuscation  
-- Penerapan Certificate Pinning  
+- Add SQLChiper for Database Encryption  
+- Add Obfuscation  
+- Add Certificate Pinning
   
 Performance  
-- Penerapan Leak Canary  
+- Add Leak Canary  
   
 Debugging
-- Penerapan Library Timber for Logging
+- Add Timber Library for Logging
+  
+UI  
+- Use Lottie Library for SplashScreen Animation

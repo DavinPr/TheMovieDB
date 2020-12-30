@@ -18,7 +18,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
-    private var _binding : FragmentHomeBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -55,13 +55,14 @@ class HomeFragment : Fragment() {
             homeViewModel.movieDiscover.observe(viewLifecycleOwner) { discover ->
                 if (discover != null) {
                     when (discover) {
-                        is Resource.Loading -> binding.homeProgressbar.visibility = View.VISIBLE
+                        is Resource.Loading -> binding.discoverProgressBar.visibility = View.VISIBLE
                         is Resource.Success -> {
-                            binding.homeProgressbar.visibility = View.GONE
+                            binding.discoverProgressBar.visibility = View.GONE
+                            binding.rvDiscover.visibility = View.VISIBLE
                             discoverAdapter.setData(discover.data)
                         }
                         is Resource.Error -> {
-                            binding.homeProgressbar.visibility = View.GONE
+                            binding.discoverProgressBar.visibility = View.GONE
                             binding.viewError.root.visibility = View.VISIBLE
                         }
                     }
@@ -70,10 +71,14 @@ class HomeFragment : Fragment() {
             homeViewModel.movieTrending.observe(viewLifecycleOwner) { trending ->
                 if (trending != null) {
                     when (trending) {
-                        is Resource.Loading -> binding.homeProgressbar.visibility = View.VISIBLE
-                        is Resource.Success -> trendingAdapter.setData(trending.data)
+                        is Resource.Loading -> binding.trendingProgressBar.visibility = View.VISIBLE
+                        is Resource.Success -> {
+                            binding.trendingProgressBar.visibility = View.GONE
+                            binding.rvTrending.visibility = View.VISIBLE
+                            trendingAdapter.setData(trending.data)
+                        }
                         is Resource.Error -> {
-                            binding.homeProgressbar.visibility = View.GONE
+                            binding.trendingProgressBar.visibility = View.GONE
                             binding.viewError.root.visibility = View.VISIBLE
                         }
                     }

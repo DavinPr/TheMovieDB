@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--    First Set   -->
+    <ConstraintSet android:id="@+id/set1">
+
+        <Constraint android:id="@+id/poster_container">
+            <Layout
+                android:layout_width="150dp"
+                android:layout_height="225dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline9" />
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_top_container">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_backdrop" />
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
+        <Constraint android:id="@+id/data_activity_detail">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_top_container" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_backdrop">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_btn_back">
+            <Layout
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+        <Constraint
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/detail_progress_bar" />
+    </ConstraintSet>
+
+    <!--   Second Set   -->
+    <ConstraintSet
+        android:id="@+id/set2"
+        app:deriveConstraintsFrom="@+id/set1">
+
+        <Constraint android:id="@+id/poster_container">
+            <Layout
+                android:layout_width="150dp"
+                android:layout_height="225dp"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_top_container">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint android:id="@+id/data_activity_detail">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_backdrop" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_backdrop">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_btn_back">
+            <Layout
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+    </ConstraintSet>
+
+    <!--   Third Set   -->
+    <ConstraintSet
+        android:id="@+id/set3"
+        app:deriveConstraintsFrom="@+id/set2">
+
+        <Constraint android:id="@+id/data_activity_detail">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_backdrop" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_backdrop">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_btn_back">
+            <Layout
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/detail_btn_scroll">
+            <Transform android:rotation="180" />
+        </Constraint>
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/set3"
+        app:constraintSetStart="@id/set1"
+        app:duration="1000"
+        app:motionInterpolator="easeOut">
+        <OnClick
+            app:clickAction="toggle"
+            app:targetId="@+id/detail_btn_scroll" />
+    </Transition>
+
+</MotionScene>

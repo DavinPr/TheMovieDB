@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBackground"
     tools:context=".search.SearchFragment">
 
     <androidx.cardview.widget.CardView
@@ -33,25 +32,47 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ProgressBar
-        android:id="@+id/search_progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_search"
-        app:layout_constraintEnd_toEndOf="@+id/rv_search"
-        app:layout_constraintStart_toStartOf="@+id/rv_search"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/cardView2"
         app:layout_constraintTop_toBottomOf="@+id/cardView2"
         tools:listitem="@layout/search_item" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/search_progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:shimmer_auto_start="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/search_list_placeholder" />
+                <include layout="@layout/search_list_placeholder" />
+                <include layout="@layout/search_list_placeholder" />
+                <include layout="@layout/search_list_placeholder" />
+                <include layout="@layout/search_list_placeholder" />
+                <include layout="@layout/search_list_placeholder" />
+                <include layout="@layout/search_list_placeholder" />
+                <include layout="@layout/search_list_placeholder" />
+            </LinearLayout>
+        </ScrollView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <include
         android:id="@+id/view_error"

@@ -3,10 +3,10 @@
     <item>
         <shape>
             <size
-                android:width="40dp"
-                android:height="40dp" />
-            <solid android:color="@color/favorite" />
-            <corners android:radius="20dp" />
+                android:width="32dp"
+                android:height="32dp" />
+            <solid android:color="@color/colorPrimary" />
+            <corners android:radius="16dp" />
         </shape>
     </item>
     <item
