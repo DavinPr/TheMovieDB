@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:maxLines="1"
                 android:text="@string/name"
                 app:layout_constraintBottom_toTopOf="@+id/guideline7"
                 app:layout_constraintEnd_toStartOf="@+id/cast_guideline2"
@@ -57,6 +58,7 @@
                 style="@style/text_category_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:text="@string/character"
                 app:layout_constraintBottom_toBottomOf="@+id/cast_image"
                 app:layout_constraintEnd_toEndOf="@+id/textView10"
@@ -87,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.54" />
+                app:layout_constraintGuide_percent="0.6" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
