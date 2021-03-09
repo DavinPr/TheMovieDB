@@ -1,10 +1,20 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.CustomTheme" parent="AppTheme">
+        <item name="android:statusBarColor" tools:targetApi="l">@color/mainBackground</item>
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <style name="AppTheme.Window.Translucent" parent="AppTheme.CustomTheme">
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="AppTheme.splashscreen_background" parent="AppTheme">
@@ -17,10 +27,6 @@
 
     <style name="AppTheme.main_background" parent="AppTheme">
         <item name="android:background">@color/mainBackground</item>
-    </style>
-
-    <style name="AppTheme.light_status_bar" parent="AppTheme">
-        <item name="android:statusBarColor">@color/mainBackground</item>
     </style>
 
     <style name="text_appname_style">

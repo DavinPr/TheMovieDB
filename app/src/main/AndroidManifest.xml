@@ -12,11 +12,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.light_status_bar"
+        android:theme="@style/AppTheme.CustomTheme"
         tools:replace="android:allowBackup">
         <activity android:name=".MainActivity" />
-        <activity android:name=".detail.DetailActivity" />
-        <activity android:name=".SplashScreenActivity" android:noHistory="true">
+        <activity android:name=".detail.DetailActivity" android:theme="@style/AppTheme.Window.Translucent" />
+        <activity android:name=".SplashScreenActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.Window.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

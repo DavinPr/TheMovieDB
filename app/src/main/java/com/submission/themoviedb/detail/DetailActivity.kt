@@ -15,7 +15,6 @@ import com.submission.themoviedb.R
 import com.submission.themoviedb.databinding.ActivityDetailBinding
 import com.submission.themoviedb.detail.attribute.DetailAttributeFragment
 import com.submission.themoviedb.detail.cast.CastDetailFragment
-import com.submission.themoviedb.helper.barSetup
 import com.submission.themoviedb.helper.blurredImage
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -33,8 +32,6 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        barSetup(window, true)
 
         ViewCompat.setOnApplyWindowInsetsListener(
             findViewById(R.id.detail_container)
